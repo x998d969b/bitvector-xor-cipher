@@ -14,7 +14,7 @@ This project implements a simple XOR-based symmetric cipher. It reads arbitrary 
 | Step | Description |
 |------|-------------|
 | Input | Text string or binary file |
-| Padding | Zero padding applied to reach 128-bit block alignment |
+| Padding | XOR can't work with blocks of different sizes. Zero padding extends the last short block to exactly 128 bits by adding zeros. Since XOR with zero doesn't alter bits, you just remove those zeros after decryption. Without padding, encryption of misaligned data would crash. |
 | Key Generation | Random key longer than plaintext by 32 bytes (256 bits) |
 | Encryption | Bitwise XOR operation (`cipher = data ^ key`) |
 | Output | Key saved as `.bin`, ciphertext saved as `.hex` |
